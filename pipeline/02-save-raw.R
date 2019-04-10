@@ -1,0 +1,41 @@
+  ###########################################################################
+ ##
+##  Save the Raw Data
+## 
+##    For reference purposes the raw data used for a report should be
+##  preserved as is. This is also very useful for saving time by not
+##  loading the raw data from it's source repeatedly (especially given
+##  that the source may be changing and accruing further data).
+##
+##    Data filenames should start with "raw-". 
+## 
+##    This triggers the loading of the raw data that was just saved. This 
+##  may seem superfluous, but is necessary for having a restartable pipeline.
+##
+##  NOTE: This overwrites the file pipeline/current-timestamp.txt to denote
+## what the most recent data to work with in later stages is.
+## 
+#############################################################################
+
+
+# Retrieve current timestamp
+CURRENT <- format(Sys.time(), "%Y%m%d-%H%M")
+
+# Save the current timestamp of interest
+writeLines(CURRENT, "pipeline/current-timestamp.txt")
+
+# Create the directory to save the data into
+dir <- paste0("data/", CURRENT)
+dir.create(dir)
+
+origin <- getwd() # remember where we came from
+setwd(dir)
+
+# DO WORK HERE -- just save the files
+
+setwd(origin) # return to working directory
+
+  ###########################################################################
+ ##
+## Continue the PIPELINE
+source("pipeline/03-load-raw.R")
