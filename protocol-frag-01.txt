@@ -1,0 +1,184 @@
+\section{List of Abbreviations}
+
+\begin{labeling}{DSMB}
+\item [CRAN] The Comprehensive R Archive Network
+\item [DRY] Don't repeat yourself
+\item [DSMB] Data and Safety Monitoring Board
+\item [R] The R Project for Statistical Computing
+\end{labeling}
+
+\section{Synopsis and Schema}
+
+\lipsum[1-2]
+
+\section{Timeline}
+
+\lipsum[3-4]
+
+\section{Introduction}
+
+\lipsum[5-6]
+
+\subsection{Background and Rationale}
+
+\lipsum[7-8]
+
+\subsection{XXX Treatment Option 1}
+
+\lipsum[66]
+
+\subsection{XXX Treatment Option 2}
+
+\lipsum[66]
+
+\subsection{Significance to the Field}
+
+\lipsum[66]
+
+\section{Objectives}
+
+\lipsum[66]
+
+\subsection{Primary Objective}
+
+\lipsum[66]
+
+\subsection{Secondary Objectives}
+
+\lipsum[66]
+
+\section{Study Design}
+
+\lipsum[66]
+
+\subsection{Overview of Protocol Study Design}
+
+\lipsum[66]
+
+\subsection{Treatment Initiation}
+
+\lipsum[66]
+
+\subsection{Duration of Study and Visit Schedule}
+
+\lipsum[66]
+
+\section{Study Population}
+
+\lipsum[66]
+
+\subsection{Inclusion Criteria}
+
+\lipsum[66]
+
+\subsection{Exclusion Criteria}
+
+\lipsum[66]
+
+\subsection{Sites}
+
+\lipsum[66]
+
+\section{Study Procedures}
+
+\lipsum[66]
+
+\subsection{Recruitment and Screening}
+
+\lipsum[66]
+
+\subsubsection{Informed Consent}
+
+\lipsum[66]
+
+\subsubsection{Screening and Baseline Assessments}
+
+\lipsum[66]
+
+\subsection{Randomization}
+
+\lipsum[66]
+
+\subsection{Induction}
+
+\lipsum[66]
+
+\subsection{Study Treatments}
+
+\lipsum[66]
+
+\subsubsection{Treatment One}
+
+\lipsum[66]
+
+\subsubsection{Treatment Two}
+
+\lipsum[66]
+
+\subsubsection{Dispensing}
+
+\lipsum[66]
+
+\subsection{Drug Packaging/Handling/Storage/Accountability}
+
+\lipsum[66]
+
+\subsubsection{Study Medication Management}
+
+\lipsum[66]
+
+\subsubsection{Drug Accountability Records and Dispensing of Study Medication}
+
+\lipsum[66]
+
+\subsubsection{Study Medication Storage}
+
+\lipsum[66]
+
+\subsubsection{Used/Unused Medication}
+
+\lipsum[66]
+
+\subsubsection{Lost Medication}
+
+\lipsum[66]
+
+\subsubsection{Dispensing of Study Medications}
+
+\lipsum[66]
+
+\subsubsection{Drug Packaging}
+
+\lipsum[66]
+
+\subsection{Blinding}
+
+\lipsum[66]
+
+\subsection{Participant Compensation}
+
+\lipsum[66]
+
+\section{Outcome Measures}
+
+\lipsum[66]
+
+\subsection{Primary Outcome}
+
+\lipsum[66]
+
+\subsection{Secondary Outcomes}
+
+\lipsum[66]
+
+\section{Participant Discontinuation, Follow-Up}
+
+\lipsum[66]
+
+\subsection{Treatment Discontinuation}
+
+\lipsum[66]
+
+\subsection{Follow-Up}
+
+\lipsum[66]

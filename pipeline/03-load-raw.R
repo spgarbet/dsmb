@@ -12,7 +12,7 @@ CURRENT <- readLines("pipeline/current-timestamp.txt", n=1)
 dir     <- paste0("data/",CURRENT)
   
 # Load the files
-for(file in list.files(dir, "raw-.*\\.Rda")) load(file)
+for(file in list.files(dir, "raw-.*\\.RData")) load(paste0(dir,"/",file))
 
   ###########################################################################
  ##

@@ -17,6 +17,10 @@
 \usepackage{textcomp}
 \usepackage{framed}
 \usepackage{caption}
+\usepackage{amsmath}
+\usepackage{epigraph}
+\usepackage{scrextend}
+\usepackage{lipsum} % Not required, only for example text
 \captionsetup[table]{labelformat=empty,textformat=empty}
 
 $if(draft)$\usepackage{draftwatermark}$endif$

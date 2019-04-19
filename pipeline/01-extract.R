@@ -29,9 +29,19 @@
  ##
 ## Extraction Code
   
-# FIXME
+# This is where your extraction from RedCap or other source would go
+# Important: NO API KEYS in this code.
+# 
+# This examples is a from a publically available dataset, CPU-0016, on opiod addiction
+# treatment.
+  
+for(file in list.files(path="NIDA-CTN-0051/CSV", pattern="*.csv"))
+{
+  assign(substring(file, 1, nchar(file)-4), read.csv(paste0("NIDA-CTN-0051/CSV/",file)))
+}
+
 
   ###########################################################################
  ##
 ## Continue the PIPELINE
-source("pipeline/02-save.raw.R")
+source("pipeline/02-save-raw.R")

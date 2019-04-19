@@ -1,0 +1,94 @@
+---
+title: Example DSMB Report Using Study NIDA-CTN-0051
+board: Data and Safety Monitoring Board
+category: Open Session Report
+output:
+  pdf_document:
+    fig_caption: yes
+    template: dsmb-report.template
+    toc: yes
+    keep_tex: true
+draft: no
+grant: NIDA-CTN-0051
+description: An example reporting template.\
+ 
+  This report is based on data pulled May 17th, 2019
+subtitle: Reproducible Research
+acronym: (DSMB)
+---
+
+\newcommand{\pdf}[2]{\includegraphics[page=#2,trim=6em 5em 5em 5em,width=\textwidth,keepaspectratio,origin=c]{#1} \newpage}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(tangram)
+
+# Start with loading the results of the data pipeline
+source("pipeline/07-load.R")
+```
+
+\section{Report Summary}
+
+\epigraph{It is so shocking to find out how many people do not believe that they can learn, and how many more believe learning to be difficult.}{Frank Herbert}
+
+The usual protocol of the project normally occupies this space.
+
+Instead of using text filler this space is utilized to expound upon the goals and principals that this template project espouses. In general this template has two principal aims: Aim 1 demonstrates a repeatable data pipeline that follows best practices for computation, Aim 2 shows a professional report with good statistical practices that is automatable. Vanderbilt also has a research project to provide similar reports that allow for a more cutting edge interactive data exploration approach, see the R `hreport` project on CRAN for details on interactive reporting. The data pipeline from this project is useable with that effort. This project follows the more traditional PDF that can be printed and read upon a plane when headed to a meeting.
+
+$$\frac{\textrm{Perceived Gain}}{\textrm{Perceived Pain}} > 1$$
+
+Why bother to invest effort into a repeatible framework? The amount of coding, and learning required initially exceed an effort that is simply copy a previous effort and start editing. Creating some figures by hand, post-editing with a digital editor and manual assembly in a word processor is a tried and true method, but how repeatible is it? When the next year rolls around and the reports are due again, the process gets repeated *in toto* again with the same level of effort. Take on reporting for 4 or 5 clinical trials and it's a full time job. Imagine for a moment that automating the report in the first year requires twice the effort, but thereafter it's a button press. One's time is then freed up in the remaining four years to focus on refining the results. The total time invested is less. Now if those results could be applied to other projects with even less effort. The total savings add up quickly. While such an ideal is not attainable, it can be approached to good effect in practice. Pursuing another angle, imagine that the copy and paste template is found to have an error and it needs to be fixed, these changes have to propagate to every report one is reponsible for that used the copy and edit verion. The odds of having to repeat such a fix across projects is quite high and a road filled with frustration. Mistakes do occur, and in both instances they can be fixed. However if the main reporting is all automated via shared routines then earlier reports can be reproduced and propogating fixes occurs from a central piece of code. Putting ones analysis and reporting tools into shared libraries and routines that cross projects is an example of the `*Don't repeat yourself*' or DRY mantra in computing. The benefits long term almost always outweigh the costs of doing such--if the task requires repetition in differing contexts. The good news is that this template is making the effort for Biostatistics in clinical trial reporting.
+
+What is that you ask? ``But you're advocating to copy and paste this project, doesn't that violate the principles you've stated?'' Which is the right question to be asking and we're pleased that you dear reader are engaged enough to notice. To wit the answer is we can't write your boilerplate text for your reports, nor your specific data processing commands but we can call out to shared libraries (and one could make their own) and show a clear outline of the phases of a data pipeline process that can be edited. There are two levels of context to apply these principals toward, that of the specific project and ones global workflow across multiple projects. Ask that question of each of the artifacts of your process, and slowly tools will migrate towards their proper place and ones efficiency in statistical reporting will increase with time.
+
+Reproducibility is an investment, an investment that usually pays off quickly. A general rule of thumb is it will require twice the effort the first time, which breaks even on the second round. Better organization also reduces odds of a error adding an additional risk mitigation component.
+
+\subsection{Example Data}
+ 
+This report uses the example data set `NIDA-CTN-0051` available at `https://datashare.nida.nih.gov/show-data-for-study/nida-ctn-0051`. I do not have permission to redistribute this dataset, but it is freely available with an online data sharing agreement. 
+Create a `NIDA-CTN-0051` directory in the directory of this project. Inside that unzip `ascii-crf-data-files_nida-ctn-0051.zip`.
+
+Then open R in this project's directory and run `source("pipeline\01-extract.R")` and the appropriate artifacts will be built to compile this report.
+
+\subsection{Pipeline}
+
+The data pipeline in particular can be used in a variety of reporting contexts. It's design allows for quick identification of code by *purpose*, and fits within the typical workflow of a report writer. Two essential principals in computational code writing are pursued: *cohesion* and *coupling*.
+
+Cohesion is the idea that each grouping of code has a cohesive single purpose. It keeps the focus very narrow and relies on the decomposability of problems into smaller manageable chunks. For example, if someone were to ask "What patches did you apply to the data?" a non-cohesive pipeline would require inspection of the entire code base. A cohesive pipeline line would simply provide the single file were patches were made. Since the tasks of a data pipeline to statitical reporting are generally the same we provide outline with this project that is recommended.
+
+Coupling is the idea of how much a piece of code depends upon constructs external to it. A mysterious global variable that controls execution is highly coupled and should be avoided. Coupling in general is bad, as each stage should seek to minimize assumptions and dependencies. Coupling cannot be 100% eliminated, but by minimizing it changes in one piece of code minimize the ripple effect of other things needing to be changed. There are two principle pieces of coupling in the code. The first is the file `pipeline/current-timestamp.txt` contains the date time of the last raw extraction which also corresponds to the directory that is currently being used for later stages. The second unavoidable bit of coupling is the name of the data variables in memory; `02-save-raw.R` depends on the variables existing as defined in it's script to have been the actual ones loaded in `01-extract.R`.
+
+The basic pipeline is as follows:
+
+\begin{labeling}{05 Transform}
+\item [01 Extract] Extract all the data from it's raw source. Could be RedCap or anything.
+\item [02 Save Raw] All the raw data is saved in R format.
+\item [03 Load Raw] All raw data is loaded from R format.
+\item [04 Patch] All data patches are applied to R.
+\item [05 Transform] Transform raw into useable formats for reporting.
+\item [06 Save] Save the transformed data in R format.
+\item [07 Load] Load the transformed data.
+\end{labeling}
+
+One can execute any stage of the pipeline and all subsequent stages get executed. There are some common tasks in a workflow that this segues nicely with. If one were to do a fresh extract of the data, the resulting later stages would get executed and new summaries would be available. If one were to be applying new patches one could start with executing `03-load-raw.R` and not have to depend on external data loads. If one were perfecting the transformations, then `03-load-raw.R` is also a good starting point. For reporting, one simply needs `07-load.R` to begin.
+
+It may seem odd that immediately after loading data it's followed by a save step, but this is what allows for the restarting of the pipeline from later stages. One thing that is not uncommon is for the transform stage to be quick long and slow. By saving the results, one can work on the report separately without having to wait through the transforms for each iteration. While it is quite tempting to put the processing code *into* the report this is not good practice as it's not easily reusable without cut and paste, and it creates reports which take a lot of time to run. One could use the caching option inside Rmarkdown for chunks, but this is easily forgotten about and leads to hard to diagnose errors in reports. Keeping the data processing in a separate managed pipeline that maintains it's own repository of results is preferable in these larger dataset situations.
+
+\subsection{Report}
+
+The rest of the report that follows is from the example project NIDA-CTN-0051. The biggest requirement in utilizing for oneself is rudimentary knowledge of \LaTeX\space and Rmarkdown. The main \LaTeX\space template used is in the file `dsmb-report.template`.
+
+The remainder of this report will use text and results taken from the `NIDA-CTN-0051` study, and is used for example and teaching purposes.
+
+The file `protocol-fraq-01.txt` is the Rmarkdown code for the protocol synopsis. This is required to be submitted as a separate document, and is part of the boiler plate for both open and closed DSMB submissions. Following the principals of DRY, this is kept in a *single* file and included as needed.
+
+```{r, results='asis'}
+# This includes the reusable Protocol Synoposis Part 1
+protocol <- file("protocol-frag-01.txt", open="r")
+x <- readLines(protocol)
+close(protocol)
+cat(paste(x, collapse="\n"))
+rm(list=c("protocol", "x"))
+```
+

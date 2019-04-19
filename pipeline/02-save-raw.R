@@ -31,7 +31,27 @@ dir.create(dir)
 origin <- getwd() # remember where we came from
 setwd(dir)
 
+############################################
 # DO WORK HERE -- just save the files
+# Your CODE
+# VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+############################################
+vars <- c("AD1", "AD2", "AD3", "ASD", "ASE", "ASF", "ASG", "ASI", "ASL", 
+"ASM", "ASP", "CHP", "D51", "DEM", "DSM", "DXS", "DXU", "EC0051A", 
+"EC0051B", "EC0051Z", "ENROLL", "EOM", "ER0051A", "ER0051B", 
+"ER0051Z", "FND", "HAM", "INA", "INF", "INJ", "INX", "LAB", "MHX", 
+"MMC", "MML", "MMT", "MOT", "MVF", "NMS", "NXC", "NXW", "PBC", 
+"PCL", "PDR", "PDV", "PEX", "PO1", "PRG", "QLE", "QLP", "RAB", 
+"SOW", "STR", "STT", "T51", "TAP", "TRL", "TUH", "TXS", "UDS", 
+"VAS", "VIS", "VNS", "XRP")
+
+for(i in vars) save(list=i, file=paste0("raw-", i,".RData"))
+
+############################################
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# End Your CODE
+############################################
+
 
 setwd(origin) # return to working directory
 

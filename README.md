@@ -2,7 +2,7 @@
 
 Reproducible Clinical Trial Data and Safety Monitoring Board (DSMB) Reporting with R and tangram
 
-This project is a best practices template for constructing a complex reporting task, in this case a DSMB report. The data pipeline is carefully constructed to be restartable from any point, and it creates a clear separation of concerns. Spreading the data pipeline code throughout a report is bad practice and generally results in copy and paste errors and tables that don't agree. By utilizing this data pipeline strategy and making a small investment in structuring your project one can save a lot of frustration and effort in the bigger scope of the project. 
+This project is a best practices template for constructing a complex reporting task, in this case a DSMB report. The data pipeline is carefully constructed to be restartable from any point, and it creates a clear separation of concerns. Spreading the data pipeline code throughout a report is bad practice and generally results in copy and paste errors and tables that don't agree. By utilizing this data pipeline strategy and making a small investment in structuring your project, one can save a lot of frustration and effort in the bigger scope of the project. 
 
 ## Project Directories
 
