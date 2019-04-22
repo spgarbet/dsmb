@@ -41,3 +41,7 @@ NIDA-CTN-0051/
 data/
 *.tex
 *.pdf
+*.lot
+*.lof
+*.toc
+pipeline/current-timestamp.txt

@@ -26,6 +26,21 @@ library(tangram)
 
 # Start with loading the results of the data pipeline
 source("pipeline/07-load.R")
+
+include <- function(filename)
+{
+  contents <- file(filename, open="r")
+  x <- readLines(contents)
+  close(contents)
+  cat(paste(x, collapse="\n"))
+}
+
+# Override statistics in style
+nejm <- tangram::nejm
+nejm[["Cell"]][["chi2"]] <- function(chi2, df, p, class=NULL, ...)  cell(paste0(p, "^2^"), class="statistics", ...)
+nejm[["Cell"]][["fstat"]] <- function(f, df1, df2, p, class=NULL, ...) cell(paste0(p, "^1^"), ..., class=c(class, "statistics"))
+nejm[["Cell"]][["p"]] <- function(p, pformat="%1.3f", include_p=TRUE) hmisc_p(p, 3, FALSE)
+
 ```
 
 \section{Report Summary}
@@ -46,7 +61,11 @@ Reproducibility is an investment, an investment that usually pays off quickly. A
 
 \subsection{Example Data}
  
-This report uses the example data set `NIDA-CTN-0051` available at `https://datashare.nida.nih.gov/show-data-for-study/nida-ctn-0051`. I do not have permission to redistribute this dataset, but it is freely available with an online data sharing agreement. 
+This report uses the example data set `NIDA-CTN-0051` available at
+
+`https://datashare.nida.nih.gov/show-data-for-study/nida-ctn-0051`.
+
+I do not have permission to redistribute this dataset, but it is freely available with an online data sharing agreement. 
 Create a `NIDA-CTN-0051` directory in the directory of this project. Inside that unzip `ascii-crf-data-files_nida-ctn-0051.zip`.
 
 Then open R in this project's directory and run `source("pipeline\01-extract.R")` and the appropriate artifacts will be built to compile this report.
@@ -85,10 +104,22 @@ The file `protocol-fraq-01.txt` is the Rmarkdown code for the protocol synopsis.
 
 ```{r, results='asis'}
 # This includes the reusable Protocol Synoposis Part 1
-protocol <- file("protocol-frag-01.txt", open="r")
-x <- readLines(protocol)
-close(protocol)
-cat(paste(x, collapse="\n"))
-rm(list=c("protocol", "x"))
+#include("protocol-frag-01.txt")
+```
+
+\section{Current Summary}
+
+```{r}
+tangram(site ~ age+gender+married+
+    hispanic+white+black+native+pacific+asian+other+
+    race_unknown+race_refused+education[0]+
+    employment_status, 
+  demographics,
+  collapse_single=TRUE,
+  digits=1,
+  caption="Demographics of Screening, Treatment and Non-elevated Group",
+  test=TRUE,
+  pct_width=0.9,
+  style="nejm")
 ```
 

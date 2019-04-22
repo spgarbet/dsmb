@@ -19,7 +19,7 @@ dir     <- paste0("data/",CURRENT)
   ###########################################################################
  ##
 ##  Load the final files into memory
-for(file in grep("^(?!raw-).*\\.Rda", list.files(dir), perl=TRUE, value=TRUE)) load(file)
+for(file in grep("^(?!raw-).*", list.files(dir), perl=TRUE, value=TRUE)) load(paste0(dir,"/",file))
 
   ###########################################################################
  ##

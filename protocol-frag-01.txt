@@ -11,6 +11,11 @@
 
 \lipsum[1-2]
 
+\begin{figure}[H]
+\includegraphics[width=\textwidth,keepaspectratio,trim={1cm 5cm 1cm 3cm},clip]{images/CTN0051-Schema.pdf}
+\caption{CTN-0051 Schema Example showing PDF inclusion as Figure}
+\end{figure}
+
 \section{Timeline}
 
 \lipsum[3-4]

@@ -18,8 +18,7 @@ setwd(dir)
  ##
 ##  Save Data locally here
 
-# FIXME
-
+save(demographics, file="demographics.RData")
 
 setwd(origin) # return to original working directory
 

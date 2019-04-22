@@ -22,6 +22,9 @@
 #############################################################################
   
 # DO WORK HERE
+  
+# Anonymization removed sites, so for example just patch with random
+DEM$SITE <- sample(c("Location A", "Location B"), length(DEM$PATID), TRUE)
 
   ###########################################################################
  ##
